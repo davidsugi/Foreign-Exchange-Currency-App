@@ -58,7 +58,7 @@ function AddCurrencyFooter({onEdit,submit,onAdding}) {
                             <MenuItem value=""><em>None</em></MenuItem>
                             {
                                 CURRENCY_OPTIONS.map(symbol=>{
-                                    return <MenuItem value={symbol}>{symbol}</MenuItem>
+                                    return <MenuItem key={symbol} value={symbol}>{symbol}</MenuItem>
                                 })
                             }
                             </Select>
@@ -66,7 +66,7 @@ function AddCurrencyFooter({onEdit,submit,onAdding}) {
                          
                         </Grid>
                         <Grid item xs={4} md={2}>
-                            <Button variant="contained" color="primary" onClick={()=> submit(value) } className={classes.submitButton} fullWidth>
+                            <Button data-test="submitCurrency" variant="contained" color="primary" onClick={()=> submit(value) } className={classes.submitButton} fullWidth>
                                 { value==="" ? "Cancel" : "Submit" }
                             </Button>
                         </Grid>

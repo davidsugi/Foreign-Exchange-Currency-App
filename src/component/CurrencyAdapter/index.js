@@ -26,7 +26,7 @@ function CurrencyAdapter({currencies,emitEvent,base,amount}) {
         <Container maxWidth="lg" className={classes.root} data-test="CurrencyAdapter">  
             <Grid container spacing={2}>
                 {
-                    currencies && currencies.length>0 ? 
+                    currencies && Object.keys(currencies).length > 0 ?
                     Object.keys(currencies).map((currency)=>{
                         return <CurrencyCard key={currency} emitEvent={emitEvent} base={base} symbol={currency} rates={currencies[currency]} amount={amount*currencies[currency]} />;
                     })

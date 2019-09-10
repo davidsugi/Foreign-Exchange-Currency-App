@@ -39,7 +39,7 @@ function Header({base,amount,edit,update,onEdit}) {
                     </Grid>
                      <Grid item xs={2} >
                         <IconButton aria-label="delete" onClick={()=>{ if(onEdit){update(value)} else {edit()} } } color="inherit" edge="end" size="medium">
-                           { onEdit ? <DoneIcon />  : <CreateIcon />}
+                           { onEdit ? <DoneIcon data-test="checkIcon"/>  : <CreateIcon data-test="pencilIcon" />}
                         </IconButton>
                     </Grid>
                     <Grid item xs={false} sm={1}/>
@@ -54,6 +54,7 @@ function Header({base,amount,edit,update,onEdit}) {
                                 id="standard-name"
                                 margin="none"
                                 value={value}
+                                data-test="EditTextField"
                                 autoFocus
                                 type="number"
                                 label="Amount"
@@ -62,7 +63,7 @@ function Header({base,amount,edit,update,onEdit}) {
                                 onChange={(e)=>{setValue(e.target.value)}}
                                 placeholder="ex: 10000"
                             />
-                        :<Typography>
+                        :<Typography data-test="amountText">
                             {amount}
                         </Typography>}
                     </Grid>
@@ -75,8 +76,8 @@ function Header({base,amount,edit,update,onEdit}) {
 Header.propTypes = {
     amount: PropTypes.number,
     base: PropTypes.string,
-    edit: PropTypes.func,
-    update: PropTypes.func,
+    edit: PropTypes.func.isRequired,
+    update: PropTypes.func.isRequired,
     onEdit: PropTypes.bool
 };
 

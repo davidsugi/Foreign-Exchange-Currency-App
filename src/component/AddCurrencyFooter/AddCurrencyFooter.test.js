@@ -20,7 +20,7 @@ describe('AddCurrencyFooter Component', () => {
     });
 });
 
-describe('Renders', () => {
+describe('Renders with onAdding Props', () => {
 
 let wrapper;
 let mockFunc;
@@ -32,6 +32,39 @@ let mockFunc;
 
     it('Should Render a Footer', () => {
         const button = findByTestAtrr(wrapper, 'form');
+        expect(button.length).toBe(1);
+    });
+
+     it('Should emit submitCurrency callback on click event', () => {
+        const button = findByTestAtrr(wrapper, 'submitCurrency');
+        button.simulate('click');
+        const callback = mockFunc.mock.calls.length;
+        expect(callback).toBe(1);
+    }); 
+
+    it('Shouldnt Render a addCurrencyButton', () => {
+        const button = findByTestAtrr(wrapper, 'addCurrency');
+        expect(button.length).toBe(0);
+    });
+});
+
+describe('Renders without onAdding Props', () => {
+
+let wrapper;
+let mockFunc;
+    beforeEach(() => {
+        mockFunc = jest.fn();
+        const props = {onAdding:false, submit: mockFunc, onEdit: mockFunc};
+        wrapper = setUp(props)
+    });
+
+    it('Shouldnt Render a Footer', () => {
+        const button = findByTestAtrr(wrapper, 'form');
+        expect(button.length).toBe(0);
+    });
+
+    it('Should Render a addCurrencyButton', () => {
+        const button = findByTestAtrr(wrapper, 'addCurrency');
         expect(button.length).toBe(1);
     });
 
