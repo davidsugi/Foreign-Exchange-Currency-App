@@ -5,6 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import CreateIcon from '@material-ui/icons/Create';
+import DoneIcon from '@material-ui/icons/Done';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import { CURRENCY } from '../../constants';
@@ -12,14 +13,17 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   header: {
-      margin: '20px auto',
+    margin: '20px auto',
   },
   icon: {
-      color: 'white',
+    color: 'white',
   },
+  form:{
+    color: 'white',
+  }
 }));
 
-function Header({base,amount,emitEvent,onEdit}) {
+function Header({base,amount,edit,update,onEdit}) {
     const [value, setValue] = React.useState(amount);
 
     const classes = useStyles();
@@ -34,8 +38,8 @@ function Header({base,amount,emitEvent,onEdit}) {
                         </Typography>
                     </Grid>
                      <Grid item xs={2} >
-                        <IconButton aria-label="delete" onClick={emitEvent} color="inherit" edge="end" size="medium">
-                            <CreateIcon />
+                        <IconButton aria-label="delete" onClick={()=>{ if(onEdit){update(value)} else {edit()} } } color="inherit" edge="end" size="medium">
+                           { onEdit ? <DoneIcon />  : <CreateIcon />}
                         </IconButton>
                     </Grid>
                     <Grid item xs={false} sm={1}/>
@@ -44,13 +48,17 @@ function Header({base,amount,emitEvent,onEdit}) {
                             <b>{base}</b>
                         </Typography>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={2} sm={1}>
                         { onEdit ?
                             <TextField
                                 id="standard-name"
-                                label="Currency Code"
                                 margin="none"
                                 value={value}
+                                autoFocus
+                                type="number"
+                                label="Amount"
+                                InputProps={{ className: classes.form }}
+                                InputLabelProps={{  className: classes.form }}
                                 onChange={(e)=>{setValue(e.target.value)}}
                                 placeholder="ex: 10000"
                             />
@@ -67,7 +75,8 @@ function Header({base,amount,emitEvent,onEdit}) {
 Header.propTypes = {
     amount: PropTypes.number,
     base: PropTypes.string,
-    emitEvent: PropTypes.func,
+    edit: PropTypes.func,
+    update: PropTypes.func,
     onEdit: PropTypes.bool
 };
 

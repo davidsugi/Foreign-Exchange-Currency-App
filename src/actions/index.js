@@ -19,8 +19,8 @@ export const editBaseCurrency = () => ({
     type: types.BASE_CURRENCY.EDIT
 });
 
-export const updateBaseCurrency = (symbol,amount) => ({
-    payload:{base:symbol,amount:amount},
+export const updateBaseCurrency = (amount) => ({
+    payload:{amount:amount},
     type: types.BASE_CURRENCY.UPDATE
 });
 

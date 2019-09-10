@@ -8,7 +8,7 @@ export default function (state = initState, action) {
     case types.BASE_CURRENCY.EDIT:
       return {...state, onEdit: true}
     case types.BASE_CURRENCY.UPDATE:
-        return {...state, base: action.payload.base, amount:action.payload.amount}
+        return {...state, amount:action.payload.amount, onEdit:false}
     default:
       return state
   }
