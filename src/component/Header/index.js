@@ -8,6 +8,7 @@ import CreateIcon from '@material-ui/icons/Create';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 import { CURRENCY } from '../../constants';
+import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -18,7 +19,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function Header({base,amount,emitEvent}) {
+function Header({base,amount,emitEvent,onEdit}) {
+    const [value, setValue] = React.useState(amount);
+
     const classes = useStyles();
     return (
         <AppBar data-test="headerComponent">
@@ -31,7 +34,7 @@ function Header({base,amount,emitEvent}) {
                         </Typography>
                     </Grid>
                      <Grid item xs={2} >
-                        <IconButton aria-label="delete" color="inherit" edge="end" size="medium">
+                        <IconButton aria-label="delete" onClick={emitEvent} color="inherit" edge="end" size="medium">
                             <CreateIcon />
                         </IconButton>
                     </Grid>
@@ -42,9 +45,18 @@ function Header({base,amount,emitEvent}) {
                         </Typography>
                     </Grid>
                     <Grid item xs={2}>
-                        <Typography>
+                        { onEdit ?
+                            <TextField
+                                id="standard-name"
+                                label="Currency Code"
+                                margin="none"
+                                value={value}
+                                onChange={(e)=>{setValue(e.target.value)}}
+                                placeholder="ex: 10000"
+                            />
+                        :<Typography>
                             {amount}
-                        </Typography>
+                        </Typography>}
                     </Grid>
                 </Grid>
             </Toolbar>
@@ -55,7 +67,8 @@ function Header({base,amount,emitEvent}) {
 Header.propTypes = {
     amount: PropTypes.number,
     base: PropTypes.string,
-    emitEvent: PropTypes.func
+    emitEvent: PropTypes.func,
+    onEdit: PropTypes.bool
 };
 
 export default Header;

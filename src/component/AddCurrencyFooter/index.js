@@ -3,9 +3,15 @@ import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/AddCircle';
 import React from 'react';
+import PropTypes from 'prop-types';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { CURRENCY_OPTIONS } from '../../constants'
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -22,35 +28,51 @@ const useStyles = makeStyles(theme => ({
       borderBottomLeftRadius: 0,
       height:'100%',
   },
-  textField:{
-      margin:'10px 30px'
-  }
+
+   formControl: {
+       margin: '10px 30px',
+       minWidth: 120,
+   },
 }));
 
-export default function AddCurrencyFooter(props) {
+function AddCurrencyFooter({onEdit,submit,onAdding}) {
+     const [value, setValue] = React.useState();
+
     const classes = useStyles();
     return (
         <Container maxWidth="lg">
-            { props.isActive ? 
-            <Card>
+            { onAdding ? 
+            <Card data-test="form">
                     <Grid container className={classes.header}>
                         <Grid item xs={8} md={10}>
-                            <TextField
-                                id="standard-name"
-                                label="Currency Code"
-                                className={classes.textField}
-                                margin="none"
-                                placeholder="ex: JPY"
-                            />
+                            <FormControl className={classes.formControl}>
+                            <InputLabel shrink htmlFor = "currency-code-dropdown" >
+                                Currency Code
+                            </InputLabel>
+                            <Select
+                            value={value}
+                            autoWidth
+                            name="Currency Code"
+                            inputProps={{ name: 'currency code',id: 'currency-code-dropdown',}}
+                            onChange={(e)=>setValue(e.target.value)}>
+                            <MenuItem value=""><em>None</em></MenuItem>
+                            {
+                                CURRENCY_OPTIONS.map(symbol=>{
+                                    return <MenuItem value={symbol}>{symbol}</MenuItem>
+                                })
+                            }
+                            </Select>
+                        </FormControl>
+                         
                         </Grid>
                         <Grid item xs={4} md={2}>
-                            <Button variant="contained" color="primary" className={classes.submitButton} fullWidth>
-                                Primary
+                            <Button variant="contained" color="primary" onClick={()=> submit(value) } className={classes.submitButton} fullWidth>
+                                { value==="" ? "Cancel" : "Submit" }
                             </Button>
                         </Grid>
                     </Grid>
             </Card> : 
-            <Button variant="contained" color="primary" fullWidth>
+            <Button variant="contained" color="primary" onClick={()=>{onEdit();setValue("")}} fullWidth  data-test="addCurrency">
                 <AddIcon className={classes.extendedIcon} />
                 Add More Currencies
             </Button>
@@ -58,3 +80,11 @@ export default function AddCurrencyFooter(props) {
         </Container>
     )
 }
+
+AddCurrencyFooter.propTypes = {
+    onAdding: PropTypes.bool,
+    onEdit: PropTypes.func,
+    submit: PropTypes.func
+};
+
+export default AddCurrencyFooter;

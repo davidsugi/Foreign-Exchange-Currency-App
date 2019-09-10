@@ -5,17 +5,17 @@ import Main from './containers/main';
 import { Provider } from 'react-redux'
 import './App.scss';
 import { configureStore } from './configure-store';
-// import { loadState, saveState } from './localStorage';
+import { loadState, saveState } from './localStorage';
 
-// const presistState = loadState();
-const store = configureStore()
+const presistState = loadState();
+const store = configureStore(presistState)
 
-// store.subscribe(()=>{
-//     saveState({
-//         my_currency: store.getState().my_currency,
-//         currency: store.getState().currency,
-//     })
-// })
+store.subscribe(()=>{
+    saveState({
+        base_currency: {...store.getState().base_currency, onEdit:false},
+        currency: {...store.getState().currency, onAdding:false},
+    })
+})
 
 const theme = createMuiTheme({
     palette: {

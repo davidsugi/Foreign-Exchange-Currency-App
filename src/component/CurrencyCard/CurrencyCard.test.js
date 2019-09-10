@@ -9,9 +9,7 @@ const setUp = (props={}) => {
 };
 
 describe('CurrencyCard Component', () => {
-
     describe('Checking PropTypes', () => {
-
         it('Should NOT throw a warning', () => {
             const expectedProps = {symbol:"USD", base:"IDR",rates:0, amount:0, emitEvent: ()=>{ } }
             const propsError = checkProps(CurrencyCard, expectedProps);

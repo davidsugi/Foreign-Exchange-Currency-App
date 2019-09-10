@@ -1,6 +1,6 @@
 import types from '../actions/type'
 
-const initState = {data:[], isLoading: false, onAdding:false}
+const initState = {data:{}, isLoading: false, onAdding:false}
 
 
 export default function (state = initState, action) {
@@ -32,6 +32,8 @@ export default function (state = initState, action) {
         return {...state, data: newState,}
     case types.CURRENCY.ADD:
         return {...state, onAdding: true }
+    case types.CURRENCY.CANCEL:
+        return {...state, onAdding: false }
     default:
       return state
   }

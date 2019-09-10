@@ -51,7 +51,7 @@ function CurrencyCard({emitEvent,base, symbol,rates,amount }) {
                         </Grid>
                     </Grid>
                     <Grid item xs={2}>
-                        <Button data-test="buttonDelete" onClick={()=>{ if(emitEvent) emitEvent() }} variant="contained" color="primary" className={classes.submitButton} fullWidth>
+                        <Button data-test="buttonDelete" onClick={()=>{ if(emitEvent){emitEvent(symbol)}  }} variant="contained" color="primary" className={classes.submitButton} fullWidth>
                             <RemoveIcon className={classes.extendedIcon} />
                         </Button>
                     </Grid>
