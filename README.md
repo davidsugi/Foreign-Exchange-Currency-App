@@ -40,7 +40,7 @@ docker run -v ${PWD}:/app -v /app/node_modules -p 3001:3000 --rm Foreign-Exchang
 Verify the deployment by navigating to your server address in your preferred browser.
 
 ```sh
-127.0.0.1:8000
+127.0.0.1:3001
 ```
 
 ## Available Scripts
