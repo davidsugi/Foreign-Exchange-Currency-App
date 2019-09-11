@@ -92,7 +92,7 @@ describe('cancelAddCurrency action', () => {
 describe('editBaseCurrency action', () => {
     it('Should update onEdit to true is updated correctly', () => {
         const expectedNewState = {
-            amount: 10000,
+            amount: "10.00",
             base: "USD",
             onEdit: true,
         };
@@ -108,12 +108,12 @@ describe('editBaseCurrency action', () => {
 describe('updateBaseCurrency action', () => {
     it('Should update amount and onEdit to false is updated correctly', () => {
         const expectedNewState = {
-            amount: 900,
+            amount: "900",
             base: "USD",
             onEdit: false,
         };
         const store = testStore();
-        store.dispatch(updateBaseCurrency(900));
+        store.dispatch(updateBaseCurrency("900"));
         const newState = store.getState();
         expect(newState.base_currency).toStrictEqual(expectedNewState);
 

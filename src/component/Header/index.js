@@ -74,7 +74,7 @@ function Header({base,amount,edit,update,onEdit}) {
 }
 
 Header.propTypes = {
-    amount: PropTypes.number,
+    amount: PropTypes.string,
     base: PropTypes.string,
     edit: PropTypes.func.isRequired,
     update: PropTypes.func.isRequired,

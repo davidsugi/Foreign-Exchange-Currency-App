@@ -17,3 +17,25 @@ export const testStore = (initialState) => {
     const createStoreWithMiddleware = applyMiddleware(...middlewares)(createStore);
     return createStoreWithMiddleware(rootReducer, initialState);
 };
+
+
+export const moneyFormat = (amount, decimalCount = 2, decimal = ".", thousands = ",") => {
+  try {
+    decimalCount = Math.abs(decimalCount);
+    decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
+    const negativeSign = amount < 0 ? "-" : "";
+
+    let i = parseInt(amount = Math.abs(Number(amount) || 0).toFixed(decimalCount)).toString();
+    let j = (i.length > 3) ? i.length % 3 : 0;
+    //format decimals if given decimal count is less than currently float point
+    let floatingpoint = Math.abs(amount - i);
+    floatingpoint= floatingpoint.toString().length > decimalCount ? floatingpoint.toFixed(decimalCount).slice(2) : floatingpoint;
+    //if floating point is less than 2, make it 2
+    floatingpoint= floatingpoint.toString().length < 2 ? floatingpoint.toFixed(2).slice(2) : floatingpoint;
+
+    let decimals = (decimalCount ? decimal + floatingpoint : "");
+    return negativeSign + (j ? i.substr(0, j) + thousands : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousands) + decimals;
+  } catch (e) {
+    console.log(e)
+  }
+};

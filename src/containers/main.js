@@ -92,8 +92,8 @@ export class main extends Component {
     var { base_currency, currency,addCurrency,updateBaseCurrency,editBaseCurrency } = this.props;
     return (
         <div>
-          <Header base={base_currency.base} onEdit={base_currency.onEdit} amount={parseInt(base_currency.amount,10)} edit={editBaseCurrency} update={updateBaseCurrency}/>
-          <CurrencyAdapter  base={base_currency.base}  amount={parseInt(base_currency.amount,10)}  currencies={currency.data} emitEvent={this.handleDeleteCurrency} />
+          <Header base={base_currency.base} onEdit={base_currency.onEdit} amount={base_currency.amount} edit={editBaseCurrency} update={updateBaseCurrency}/>
+          <CurrencyAdapter  base={base_currency.base}  amount={parseFloat(base_currency.amount,10)}  currencies={currency.data} emitEvent={this.handleDeleteCurrency} />
           <AddCurrencyFooter onAdding={currency.onAdding} submit={this.fetchCurrency} onEdit={addCurrency} />
           <Snackbar message={SNACKBAR_MESSAGE[this.state.snackBarMessage]} variant={this.state.snackbarType} open={this.state.snackBarOpen} handleClose={this.handleClose}/>
         </div>

@@ -13,7 +13,7 @@ describe('Checking PropTypes', () => {
     describe('Checking PropTypes', () => {
 
         it('Should NOT throw a warning', () => {
-            const expectedProps = {base:"IDR", amount:0, edit: ()=>{ }, update: ()=>{ }, onEdit:true,  }
+            const expectedProps = {base:"IDR", amount:"0", edit: ()=>{ }, update: ()=>{ }, onEdit:true,  }
             const propsError = checkProps(Header, expectedProps);
             expect(propsError).toBeUndefined();
         });
@@ -28,7 +28,7 @@ describe('Header Component without onEdit Props', () => {
     let mockFunc;
     beforeEach(() => {
         mockFunc = jest.fn();
-        const expectedProps = {base:"IDR", amount:10, edit:mockFunc,update:mockFunc, onEdit:false,  }
+        const expectedProps = {base:"IDR", amount:"10.00", edit:mockFunc,update:mockFunc, onEdit:false,  }
         component = setUp(expectedProps);
     });
 
@@ -61,7 +61,7 @@ describe('Header Component without onEdit Props', () => {
     let mockFunc;
     beforeEach(() => {
         mockFunc = jest.fn();
-        const expectedProps = {base:"IDR", amount:10, edit:mockFunc,update:mockFunc, onEdit:true,  }
+        const expectedProps = {base:"IDR", amount:"10.00", edit:mockFunc,update:mockFunc, onEdit:true,  }
         component = setUp(expectedProps);
     });
 

@@ -1,6 +1,6 @@
 import types from '../actions/type'
 
-const initState = {base:"USD", amount:10000, onEdit:false}
+const initState = {base:"USD", amount:"10.00", onEdit:false}
 
 
 export default function (state = initState, action) {

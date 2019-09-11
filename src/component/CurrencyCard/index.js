@@ -7,6 +7,7 @@ import RemoveIcon from '@material-ui/icons/Remove';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { CURRENCY } from '../../constants';
+import {moneyFormat} from '../../utils';
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -40,13 +41,13 @@ function CurrencyCard({emitEvent,base, symbol,rates,amount }) {
                                  <Typography >{ symbol }</Typography>
                             </Grid>
                             <Grid item xs={6}>
-                                 <Typography style={{ textAlign:'end'}}>{amount}</Typography>
+                                 <Typography style={{ textAlign:'end'}}>{ moneyFormat(amount) }</Typography>
                             </Grid>
                             <Grid item xs={12}>
                                 <Typography><i>{symbol} - {CURRENCY[symbol]}</i> </Typography>
                             </Grid>
                             <Grid item xs={12}>
-                                <Typography><i>1 {base} = {symbol} {rates}</i> </Typography>
+                                <Typography><i>1 {base} = {symbol} {moneyFormat(rates,5) }</i> </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
