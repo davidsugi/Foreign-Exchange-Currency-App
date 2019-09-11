@@ -1,8 +1,10 @@
 
 export const URL = 'https://api.exchangeratesapi.io/'
 
-//CURRENT OPTIONS
-export const CURRENCY_OPTIONS = ["CAD", "HKD", "ISK", "PHP", "DKK", "HUF", "CZK", "GBP", "RON", "SEK", "IDR", "INR", "BRL", "RUB", "HRK", "JPY", "THB", "CHF", "EUR", "MYR", "BGN", "TRY", "CNY", "NOK", "NZD", "ZAR", "USD", "MXN", "SGD", "AUD", "ILS", "KRW", "PLN"];
+export const SNACKBAR_MESSAGE={"ADD": "Succesfuly adding currency","DUPLICATE": "Currency already exist","FAIL_ADD": "Failed to add currency, please try again later", "DELETE":"Succesfully remove currency"}
+
+//CURRENT CURRENCY OPTIONS
+export const CURRENCY_OPTIONS = ["CAD", "HKD", "ISK", "PHP", "DKK", "HUF", "CZK", "GBP", "RON", "SEK", "IDR", "INR", "BRL", "RUB", "HRK", "JPY", "THB", "CHF", "EUR", "MYR", "BGN", "TRY", "CNY", "NOK", "NZD", "ZAR", "MXN", "SGD", "AUD", "ILS", "KRW", "PLN"];
 
 //CODE TO CURRENCY NAME
 export const CURRENCY  ={

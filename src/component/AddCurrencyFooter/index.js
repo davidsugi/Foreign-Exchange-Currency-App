@@ -1,17 +1,16 @@
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import Container from '@material-ui/core/Container';
+import FormControl from '@material-ui/core/FormControl';
 import Grid from '@material-ui/core/Grid';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/AddCircle';
-import React from 'react';
 import PropTypes from 'prop-types';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import InputLabel from '@material-ui/core/InputLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
-import { CURRENCY_OPTIONS } from '../../constants'
+import React from 'react';
+import { CURRENCY_OPTIONS } from '../../constants';
 
 const useStyles = makeStyles(theme => ({
   header: {

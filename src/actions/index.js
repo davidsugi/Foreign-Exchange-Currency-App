@@ -26,14 +26,16 @@ export const updateBaseCurrency = (amount) => ({
 
 export const getCurrency = (base,symbol) => async (dispatch) => {
     dispatch({ type: types.LOAD_CURRENCY.REQUEST})
-    await axios.get(`${URL}latest?base=${base}&symbols=${symbol}`)
+    return await axios.get(`${URL}latest?base=${base}&symbols=${symbol}`)
     .then(res => {
         dispatch({
             type: types.LOAD_CURRENCY.SUCCESS,
             payload: res.data
         })
+        return true;
     })
     .catch(err => {
-        dispatch({ type: types.LOAD_CURRENCY.FAIL, payload:err})       
+        dispatch({ type: types.LOAD_CURRENCY.FAIL, payload:err})   
+        return false;    
     })
 };
